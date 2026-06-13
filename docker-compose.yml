@@ -55,6 +55,10 @@ services:
     image: gcr.io/cadvisor/cadvisor:v0.49.1
     container_name: lab-cadvisor
     privileged: true
+    command:
+      - "--docker_only=true"
+      - "--housekeeping_interval=5s"
+      - "--disable_metrics=disk,diskIO,tcp,udp,percpu,sched,process,hugetlb,referenced_memory,cpu_topology,resctrl"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
